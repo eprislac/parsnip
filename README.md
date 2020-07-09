@@ -2,6 +2,8 @@
 ## A Kanban Board #
 I'm doing it in typescript as that's what I normally use, and so I can't just copy-paste from the examples.
 I'll also be replacing any class-based components wherever I can with functional components using React Hooks.
+
+This exercise is from [Redux in Action](https://www.amazon.com/Redux-Action-Marc-Garreau/dp/1617294977) (ISBN-13:78-1617294976)  by Marc Garreau and Will Faurot.
 ___
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
