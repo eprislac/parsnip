@@ -1,0 +1,136 @@
+.tasks {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  height: 100%;
+
+  .task-lists {
+    grid-column-start : 2;
+    grid-column-end: 12;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: row;
+    justify-items: space-between;
+    align-content: space-evenly;
+    height: 100%;
+
+    .task-list {
+      border: 1px solid #666;
+      background-color: #666;
+      min-width: 30%;
+      border-radius: .25em .25em .25em .25em;
+      flex-basis: auto;
+      display: flex;
+      flex-direction: column;
+      padding: .5em;
+      margin: 1em;
+      height: 100%;
+
+      .task-list-title {
+        padding: 1em;
+        color: #eee;
+        border-radius: .25em .25em 0 0;
+        text-align: left;
+        display: flex;
+        flex-direction: row;
+        justify-items: space-between;
+        align-items: center;
+        strong {
+          display: block;
+          flex-grow: 1;
+          &:last-child {
+            text-align: right;
+          }
+        }
+        button.create-button {
+          background: #fff;
+          border: #fff 1px solid;
+          height: 1.5em;
+          width: 1.5em;
+          border-radius: 1.5em;
+          &:hover {
+            background: #ccc;
+          }
+        }
+      }
+
+      .task {
+        margin-top: .5em;
+        margin-bottom: .5em;
+        text-align: left;
+
+        .task-header {
+          font-weight: bold;
+          padding: .5em;
+          border: 1px solid #ddd;
+          background-color: #eee;
+          border-radius: .25em .25em 0 0;
+          display: flex;
+          flex-direction: row;
+          justify-items: space-between;
+          align-items: center;
+          div {
+            flex-grow: 1;
+            &:last-child {
+              text-align: right;
+            }
+
+            select {
+              padding: .5em;
+              border: 0px solid transparent;
+              border-radius: .25em;
+              &[data-chosen='Unstarted'] {
+                background-color: firebrick;
+                color: white;
+              }
+              &[data-chosen='In Progress'] {
+                background-color: goldenrod;
+                color: black;
+              }
+              &[data-chosen='Completed'] {
+                background-color: green;
+                color: white;
+              }
+            }
+          }
+        }
+        .task-body {
+          padding: 1em;
+          border: 1px solid #ddd;
+          border-top: 0px solid transparent;
+          border-radius: 0 0 .25em .25em;
+          background-color: #ffffff;
+
+        }
+      }
+
+    }
+  }
+}
+
+.task-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-items: space-between;
+  padding: 1em;
+  height: auto;
+  overflow: hidden;
+  transition: height 2s;
+
+  input, textarea, button {
+    width: 90% !important;
+    border: 1px solid transparent;
+    padding: 1em;
+    font-family: sans-serif;
+    border-radius: .5em;
+    margin-bottom: .5em;
+    margin-left: 0;
+    marging-right: 0;
+  }
+}
+
+.hidden {
+  display: none;
+  height: 0;
+  transition: height 2s;
+}

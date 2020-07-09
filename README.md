@@ -1,3 +1,9 @@
+# Redux in Action Example 1: Parsnip #
+## A Kanban Board #
+I'm doing it in typescript as that's what I normally use, and so I can't just copy-paste from the examples.
+I'll also be replacing any class-based components wherever I can with functional components using React Hooks.
+___
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
