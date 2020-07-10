@@ -1,13 +1,13 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
-import { updateTask, deleteTask } from '../actions'
+import { editTask, deleteTask } from '../actions'
 import './Task.scss'
 
 export type TaskType = {
-  id: number
-  title: string
-  description: string
-  status: string
+  id?: number
+  title?: string
+  description?: string
+  status?: string
 }
 
 type TaskPropsType = {
@@ -21,7 +21,7 @@ export const Task = (props: TaskPropsType) => {
   const handleChange = (event: any) => {
     event.target.dataset.chosen = event.target.value
     dispatch(
-      updateTask({
+      editTask({
         ...task,
         status: event.target.value
       })
@@ -43,7 +43,7 @@ export const Task = (props: TaskPropsType) => {
             data-chosen={ task.status }>
             <option key="Unstarted" value="Unstarted">Unstarted</option>
             <option key="In Progress" value="In Progress">In Progress</option>
-            <option key="completed" value="Completed">Completed</option>
+            <option key="Completed" value="Completed">Completed</option>
           </select>
           <button
             className="delete-button"

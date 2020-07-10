@@ -1,15 +1,32 @@
 import React from 'react'
-import logo from './logo.svg'
 import './App.css'
 import { TasksPage } from './components/TasksPage'
-import { TaskType } from './components/Task'
-import { createStore, combineReducers } from 'redux'
+import {
+  createStore,
+  combineReducers,
+  applyMiddleware
+} from 'redux'
 import { Provider } from 'react-redux'
-import { tasks, statuses } from './reducers'
-import { devToolsEnhancer, composeWithDevTools } from 'redux-devtools-extension'
+import {
+  tasks,
+  statuses,
+  projects
+} from './reducers'
+import { composeWithDevTools } from 'redux-devtools-extension'
+import thunk from 'redux-thunk'
+
 const App = () => {
   const store =
-    createStore(combineReducers({tasks, statuses}), composeWithDevTools())
+    createStore(
+      combineReducers({
+        tasks,
+        statuses,
+        projects
+      }),
+      composeWithDevTools(
+        applyMiddleware(thunk)
+      )
+    )
 
   return (
     <Provider store={ store }>

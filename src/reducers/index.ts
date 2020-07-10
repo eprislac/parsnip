@@ -1,20 +1,4 @@
 import { TaskType } from '../components/Task'
-import { uniqueId } from '../actions'
-
-const mockTasks: TaskType[] = [
-  {
-    id: uniqueId(),
-    title: 'Learn Redux',
-    description: 'The store, actions, and reducers, oh my!',
-    status: 'In Progress'
-  },
-  {
-    id: uniqueId(),
-    title: 'Peace on Earth',
-    description: 'No big deal.',
-    status: 'In Progress'
-  }
-]
 
 const initStatuses = [
   'Unstarted',
@@ -22,19 +6,40 @@ const initStatuses = [
   'Completed'
 ]
 
-const tasks = (state = { tasks: mockTasks }, action: any) => {
+const initialTasks = {
+  tasks: [],
+  isLoading: false
+}
+
+const tasks = (state = initialTasks, action: any) => {
   switch(action.type) {
-    case 'UPDATE_TASK':
+    case 'FETCH_TASKS_FAILED':
+    case 'EDIT_TASK_FAILED':
+    case 'DELETE_TASK_FAILED':
+      console.warn(action.payload.error)
+      return state
+    case 'FETCH_TASKS_STARTED':
+      return {
+        ...state,
+        isLoading: true
+      }
+    case 'FETCH_TASKS_SUCCEEDED':
+      return {
+        ...state,
+        tasks: action.payload.tasks,
+        isLoading: false
+      }
+    case 'EDIT_TASK_SUCCEEDED':
       const updatedTask = action.payload
       const updatedTasks =  state.tasks.map((task: TaskType) => {
         return task.id === updatedTask.id ? updatedTask : task
       })
       return {...state, tasks: updatedTasks }
-    case 'CREATE_TASK':
+    case 'CREATE_TASK_SUCCEEDED':
       const newTask = action.payload
       const newTasks = [...(state.tasks), newTask]
       return { ...state, tasks: newTasks }
-    case 'DELETE_TASK':
+    case 'DELETE_TASK_SUCCEEDED':
       const lessTasks = state
         .tasks
         .filter((task: TaskType) => task.id !== action.payload.id)
@@ -51,5 +56,9 @@ const statuses = (state = { statuses: initStatuses }, action: any) => {
   return state
 }
 
-export { tasks, statuses }
+const projects = (state = { projects: [] }, action: any) => {
+  return state
+}
+
+export { tasks, statuses, projects }
 

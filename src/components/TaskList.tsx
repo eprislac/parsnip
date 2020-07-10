@@ -6,6 +6,7 @@ import { createTask } from '../actions'
 type TaskListPropsType = {
   status: string
   tasks: TaskType[]
+  isLoading: boolean
 }
 
 export const TaskList = (props: TaskListPropsType) => {
@@ -49,8 +50,8 @@ export const TaskList = (props: TaskListPropsType) => {
         <textarea placeholder="Task Description" onChange={ (e) => setDescription(e.target.value) } />
         <button onClick={ handleCreate }>Save</button>
       </div>
-      {
-        props.tasks.map(task => (
+      { props.isLoading && (<div>Loading...</div>) }
+      { !props.isLoading && props.tasks.map(task => (
           <Task key={task.id} task={task} />)
         )
       }
