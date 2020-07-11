@@ -10,9 +10,7 @@ const client = axios.create({
   }
 })
 
-export const fetchTasks =
-  () => client.get('/tasks')
-
+export const fetchTasks = () => client.get('/tasks')
 
 export const createTask =
   (task: TaskType) => client.post('/tasks', task)

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Toast, ToastBody, ToastHeader } from 'reactstrap'
 import { setError } from '../actions'
 import { useDispatch } from 'react-redux'

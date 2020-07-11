@@ -4,7 +4,6 @@ import './index.css'
 import App from './App'
 import * as serviceWorker from './serviceWorker'
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus, faTrash, faSave, faCog }from '@fortawesome/free-solid-svg-icons'
 import {
   faGithubAlt,
