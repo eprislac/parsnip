@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { Task, TaskType } from './Task'
 import { createTask } from '../actions'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 type TaskListPropsType = {
   status: string
@@ -41,16 +42,27 @@ export const TaskList = (props: TaskListPropsType) => {
     <div className="task-list">
       <div className="task-list-title">
         <strong>{props.status}</strong>
-        <button className="create-button" onClick={ toggleFormOpen }>
-          <strong>+</strong>
-        </button>
+        <FontAwesomeIcon icon="plus" onClick={ toggleFormOpen }/>
       </div>
       <div className={`task-form ${ formOpen ? '' : 'hidden' }`}>
-        <input type="text" placeholder="Task Title" onChange={ (e) => setTitle(e.target.value) } />
-        <textarea placeholder="Task Description" onChange={ (e) => setDescription(e.target.value) } />
-        <button onClick={ handleCreate }>Save</button>
+        <input className="form-control" type="text" placeholder="Task Title" onChange={ (e) => setTitle(e.target.value) } />
+        <textarea className="form-control" placeholder="Task Description" onChange={ (e) => setDescription(e.target.value) } />
+        <button className="btn btn-primary" onClick={ handleCreate }>
+          <FontAwesomeIcon icon="save"  />&nbsp;Save
+        </button>
       </div>
-      { props.isLoading && (<div>Loading...</div>) }
+      {
+        props.isLoading && (
+          <div>
+            <FontAwesomeIcon
+              icon="cog"
+              size="2x"
+              spin={true}
+              style={{color: '#eee'}}
+            />
+          </div>
+        )
+      }
       { !props.isLoading && props.tasks.map(task => (
           <Task key={task.id} task={task} />)
         )

@@ -21,7 +21,7 @@
     {
       "title": "This is a task",
       "description": "Written to test",
-      "status": "Unstarted",
+      "status": "Completed",
       "id": 6
     }
   ]

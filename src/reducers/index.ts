@@ -60,5 +60,18 @@ const projects = (state = { projects: [] }, action: any) => {
   return state
 }
 
-export { tasks, statuses, projects }
+const error = ( state = { error: null }, action: any) => {
+  switch (action.type) {
+    case 'SET_ERROR':
+      return {
+        ...state,
+        error: action.payload.error
+      }
+    case 'GET_ERROR':
+    default:
+      return state
+  }
+}
+
+export { tasks, statuses, projects, error }
 

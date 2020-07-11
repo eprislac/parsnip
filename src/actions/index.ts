@@ -39,10 +39,7 @@ export const fetchTasksSucceeded = (tasks: any) => {
 }
 
 export const fetchTasksFailed = (error:any) => {
-  return {
-    type: 'FETCH_TASKS_FAILED',
-    payload: { error: error }
-  }
+  return (dispatch:any) => dispatch(setError('Failed to fetch tasks'))
 }
 
 export const createTaskSucceeded = (task: any) => {
@@ -53,10 +50,7 @@ export const createTaskSucceeded = (task: any) => {
 }
 
 export const createTaskFailed = (error:any) => {
-  return {
-    type: 'CREATE_TASK_FAILED',
-    payload: { error: error }
-  }
+  return (dispatch:any) => dispatch(setError('Failed to create task'))
 }
 
 export const createTask = (task: TaskType) => {
@@ -76,10 +70,7 @@ export const editTaskSucceeded = (task: TaskType) => {
 }
 
 export const editTaskFailed = (error: Error) => {
-  return {
-    type: 'EDIT_TASK_FAILED',
-    payload: { error: error }
-  }
+  return (dispatch:any) => dispatch(setError('Failed to save edited task'))
 }
 
 export const editTask = (task: TaskType) => {
@@ -106,10 +97,7 @@ export const deleteTaskSucceeded = (id: any) => {
 }
 
 export const deleteTaskFailed = (error: Error) => {
-  return {
-    type: 'DELETE_TASK_FAILED',
-    payload: { error: error }
-  }
+  return (dispatch:any) => dispatch(setError('Failed to delete task'))
 }
 
 export const deleteTask = (id: any) => {
@@ -121,4 +109,35 @@ export const deleteTask = (id: any) => {
   }
 }
 
+export const setError = (error: string) =>  {
+  return {
+    type: 'SET_ERROR',
+    payload: {
+      error: error
+    }
+  }
+}
 
+export const getError = () => ({ type: 'GET_ERROR' })
+
+export const setMessage = (message: string) =>  {
+  return {
+    type: 'SET_MESSAGE',
+    payload: {
+      message: message
+    }
+  }
+}
+
+export const getMessage = () => ({ type: 'GET_MESSAGE' })
+
+export const setWarning = (warning: string) =>  {
+  return {
+    type: 'SET_WARNING',
+    payload: {
+      warning: warning
+    }
+  }
+}
+
+export const getWarning = () => ({ type: 'GET_WARNING' })

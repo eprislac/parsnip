@@ -1,6 +1,7 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
 import { editTask, deleteTask } from '../actions'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import './Task.scss'
 
 export type TaskType = {
@@ -38,6 +39,7 @@ export const Task = (props: TaskPropsType) => {
         <div>{ task.title }</div>
         <div>
           <select
+            className="form-control"
             onChange={ handleChange }
             value={ task.status }
             data-chosen={ task.status }>
@@ -45,11 +47,11 @@ export const Task = (props: TaskPropsType) => {
             <option key="In Progress" value="In Progress">In Progress</option>
             <option key="Completed" value="Completed">Completed</option>
           </select>
-          <button
-            className="delete-button"
-            onClick={ handleDelete }>
-            &times;
-          </button>
+        </div>
+        <div>
+          <FontAwesomeIcon
+            icon="trash"
+            onClick={ handleDelete }/>
         </div>
       </div>
       <div className="task-body">

@@ -3,7 +3,8 @@ import { TaskList } from './TaskList'
 import { TaskType } from './Task'
 import { useSelector, useDispatch } from 'react-redux'
 import { createSelector } from 'reselect'
-import { fetchTasks } from '../actions'
+import { fetchTasks, getError } from '../actions'
+import { FlashMessage } from './FlashMessage'
 
 import './TaskList.scss'
 
@@ -24,6 +25,13 @@ const statusTasksSelector = (status: string) => {
         isLoading: state.isLoading
       }
     }
+  )
+}
+
+const errorSelector = () => {
+  return createSelector(
+    (state: any) => state.error,
+    (state: any) => state.error
   )
 }
 
@@ -49,6 +57,13 @@ const Tasks = (props: TasksProps) => {
 }
 
 export const TasksPage = () => {
+  const error = useSelector(errorSelector())
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(getError())
+  }, [dispatch])
+
   const renderTaskLists = () => {
     return TASK_STATUSES.map((status, index) => {
       return (
@@ -60,10 +75,13 @@ export const TasksPage = () => {
   }
 
   return (
+    <>
+    { error && <FlashMessage title="Error" message={ error } /> }
     <div className="tasks">
       <div className="task-lists">
         {  renderTaskLists() }
       </div>
     </div>
+  </>
   )
 }

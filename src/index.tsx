@@ -1,8 +1,30 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import React from 'react'
+import ReactDOM from 'react-dom'
+import './index.css'
+import App from './App'
+import * as serviceWorker from './serviceWorker'
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPlus, faTrash, faSave, faCog }from '@fortawesome/free-solid-svg-icons'
+import {
+  faGithubAlt,
+  faGoogle,
+  faFacebook,
+  faTwitter
+} from '@fortawesome/free-brands-svg-icons'
+
+import 'bootstrap/scss/bootstrap.scss'
+
+library.add(
+  faPlus,
+  faTrash,
+  faSave,
+  faCog,
+  faGithubAlt,
+  faGoogle,
+  faFacebook,
+  faTwitter
+)
 
 ReactDOM.render(
   <React.StrictMode>

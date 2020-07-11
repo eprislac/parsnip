@@ -1,0 +1,28 @@
+.toast-wrapper {
+  grid-column-start: 1;
+  grid-column-end: 13;
+  padding: 1em;
+  display: grid !important;
+
+
+  .toast {
+    display: grid !important;
+    grid-column-start: 1 !important;
+    grid-column-end: 13 !important;
+
+    &.error {
+      background-color: firebrick;
+      color: white;
+    }
+    &.message {
+      background-color: green;
+      color: white;
+    }
+    &.warning {
+      background-color: glodenrod;
+    }
+  }
+
+
+}
+

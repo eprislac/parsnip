@@ -10,7 +10,8 @@ import { Provider } from 'react-redux'
 import {
   tasks,
   statuses,
-  projects
+  projects,
+  error
 } from './reducers'
 import { composeWithDevTools } from 'redux-devtools-extension'
 import thunk from 'redux-thunk'
@@ -21,7 +22,8 @@ const App = () => {
       combineReducers({
         tasks,
         statuses,
-        projects
+        projects,
+        error
       }),
       composeWithDevTools(
         applyMiddleware(thunk)
