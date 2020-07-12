@@ -41,17 +41,12 @@ export const apiMiddleware = (store: any) => (next: any) => (action: any) => {
     }
   }
 
-  const makeCall = (call: any) => {
-    return request(call)
-      .then((response: any) => response)
-      .catch((error: any) => error)
-  }
-
   return request(callApi)
     .then(
         (response: any) => {
+          const isDelete = callApi.method === 'delete'
           const payload =
-            callApi.method === 'delete' ? { id: callApi.body } : response.data
+             isDelete ? { id: callApi.body } : response.data
           next({
             type: successType,
             payload: payload

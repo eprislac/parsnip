@@ -26,60 +26,28 @@ export const updateTask = ({id, title, description, status}: any) => {
 
 export const fetchTasks = () => {
   return {
-    [CALL_API]: {
-      types: [
-        FETCH_TASKS_STARTED,
-        FETCH_TASKS_SUCCEEDED,
-        FETCH_TASKS_FAILED
-      ],
-      endpoint: '/tasks',
-      method: 'get'
-    }
+    type: FETCH_TASKS_STARTED
   }
 }
 
 export const createTask = (task: TaskType) => {
   return {
-    [CALL_API]: {
-      types: [
-        CREATE_TASK_STARTED,
-        CREATE_TASK_SUCCEEDED,
-        CREATE_TASK_FAILED
-      ],
-      endpoint: '/tasks',
-      method: 'post',
-      body: task
-    }
+    type: CREATE_TASK_STARTED,
+    payload: task
   }
 }
 
 export const editTask = (task: TaskType) => {
   return {
-    [CALL_API]: {
-      types: [
-        EDIT_TASK_STARTED,
-        EDIT_TASK_SUCCEEDED,
-        EDIT_TASK_FAILED
-      ],
-      endpoint: '/tasks',
-      method: 'put',
-      body: task
-    }
+    type: EDIT_TASK_STARTED,
+    payload: task
   }
 }
 
 export const deleteTask = (id: number) => {
   return {
-    [CALL_API]: {
-      types: [
-        DELETE_TASK_STARTED,
-        DELETE_TASK_SUCCEEDED,
-        DELETE_TASK_FAILED
-      ],
-      endpoint: '/tasks',
-      method: 'delete',
-      body: id
-    }
+    type: DELETE_TASK_STARTED,
+    payload: id
   }
 }
 

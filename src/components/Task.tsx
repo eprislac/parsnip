@@ -36,8 +36,8 @@ export const Task = (props: TaskPropsType) => {
   return (
     <div className="task">
       <div className="task-header">
-        <div>{ task.title }</div>
-        <div>
+        <div style={{minWidth: '65%'}}>{ task.title }</div>
+        <div style={{minWidth: '25%'}}>
           <select
             className="form-control"
             onChange={ handleChange }
@@ -48,7 +48,7 @@ export const Task = (props: TaskPropsType) => {
             <option key="Completed" value="Completed">Completed</option>
           </select>
         </div>
-        <div>
+        <div style={{minWidth: '10%'}}>
           <FontAwesomeIcon
             icon="trash"
             onClick={ handleDelete }/>

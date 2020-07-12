@@ -16,7 +16,8 @@ import {
 import { composeWithDevTools } from 'redux-devtools-extension'
 import thunk from 'redux-thunk'
 import createMiddlewareSaga from 'redux-saga'
-import apiMiddleware from './middleware/api'
+// import apiMiddleware from './middleware/api'
+import rootSaga from './sagas'
 
 const App = () => {
   const sagaMiddleware = createMiddlewareSaga()
@@ -31,11 +32,11 @@ const App = () => {
       composeWithDevTools(
         applyMiddleware(
           thunk,
-          apiMiddleware,
           sagaMiddleware
         )
       )
     )
+  sagaMiddleware.run(rootSaga)
 
   return (
     <Provider store={ store }>

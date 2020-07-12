@@ -4,19 +4,46 @@
       "id": 1,
       "title": "Learn Redux",
       "description": "The store, actions, and reducers, oh my!",
-      "status": "Completed"
+      "status": "Completed",
+      "timer": 0
     },
     {
       "id": 2,
       "title": "Peace on Earth",
       "description": "No big deal.",
-      "status": "Unstarted"
+      "status": "Unstarted",
+      "timer": 0
     },
     {
       "title": "This is a task",
       "description": "Written to test",
       "status": "In Progress",
-      "id": 6
+      "id": 6,
+      "timer": 0
+    },
+    {
+      "title": "test",
+      "description": "test",
+      "status": "In Progress",
+      "id": 8
+    },
+    {
+      "title": "new test",
+      "description": "new test",
+      "status": "Unstarted",
+      "id": 9
+    },
+    {
+      "title": "another new test",
+      "description": "another new test",
+      "status": "Completed",
+      "id": 10
+    },
+    {
+      "title": "yet another new test",
+      "description": "yet another new test",
+      "status": "Unstarted",
+      "id": 11
     }
   ]
 }
