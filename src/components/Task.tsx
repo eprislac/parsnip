@@ -30,7 +30,7 @@ export const Task = (props: TaskPropsType) => {
   }
 
   const handleDelete = (event: any) => {
-    dispatch(deleteTask(task.id))
+    dispatch(deleteTask(task.id || 0))
   }
 
   return (

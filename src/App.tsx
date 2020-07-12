@@ -15,8 +15,11 @@ import {
 } from './reducers'
 import { composeWithDevTools } from 'redux-devtools-extension'
 import thunk from 'redux-thunk'
+import createMiddlewareSaga from 'redux-saga'
+import apiMiddleware from './middleware/api'
 
 const App = () => {
+  const sagaMiddleware = createMiddlewareSaga()
   const store =
     createStore(
       combineReducers({
@@ -26,7 +29,11 @@ const App = () => {
         error
       }),
       composeWithDevTools(
-        applyMiddleware(thunk)
+        applyMiddleware(
+          thunk,
+          apiMiddleware,
+          sagaMiddleware
+        )
       )
     )
 

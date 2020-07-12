@@ -10,18 +10,12 @@
       "id": 2,
       "title": "Peace on Earth",
       "description": "No big deal.",
-      "status": "In Progress"
-    },
-    {
-      "title": "Create Facebook for Dogs",
-      "description": "the hottest new app!",
-      "status": "Unstarted",
-      "id": 5
+      "status": "Unstarted"
     },
     {
       "title": "This is a task",
       "description": "Written to test",
-      "status": "Completed",
+      "status": "In Progress",
       "id": 6
     }
   ]

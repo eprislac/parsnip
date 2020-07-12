@@ -17,7 +17,10 @@ const tasks = (state = initialTasks, action: any) => {
     case 'EDIT_TASK_FAILED':
     case 'DELETE_TASK_FAILED':
       console.warn(action.payload.error)
-      return state
+      return {
+        ...state,
+        error: action.error
+      }
     case 'FETCH_TASKS_STARTED':
       return {
         ...state,
@@ -26,7 +29,7 @@ const tasks = (state = initialTasks, action: any) => {
     case 'FETCH_TASKS_SUCCEEDED':
       return {
         ...state,
-        tasks: action.payload.tasks,
+        tasks: action.payload,
         isLoading: false
       }
     case 'EDIT_TASK_SUCCEEDED':
@@ -36,9 +39,10 @@ const tasks = (state = initialTasks, action: any) => {
       })
       return {...state, tasks: updatedTasks }
     case 'CREATE_TASK_SUCCEEDED':
-      const newTask = action.payload
-      const newTasks = [...(state.tasks), newTask]
-      return { ...state, tasks: newTasks }
+      return {
+        ...state,
+        tasks: [...(state.tasks), action.payload]
+      }
     case 'DELETE_TASK_SUCCEEDED':
       const lessTasks = state
         .tasks
