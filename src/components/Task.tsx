@@ -9,6 +9,7 @@ export type TaskType = {
   title?: string
   description?: string
   status?: string
+  timer: number
 }
 
 type TaskPropsType = {
@@ -56,6 +57,7 @@ export const Task = (props: TaskPropsType) => {
       </div>
       <div className="task-body">
         { task.description }
+        <div className="task-timer">{task.timer}s</div>
       </div>
     </div>
   )

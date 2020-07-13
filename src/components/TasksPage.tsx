@@ -28,6 +28,29 @@ const statusTasksSelector = (status: string) => {
   )
 }
 
+const statisticsSelector = () => {
+  return createSelector(
+    (state: any) => state.tasks,
+    (state: any) => {
+      return {
+        totalTasks: state.tasks.length,
+        totalInProgress: state
+          .tasks
+          .filter((task: TaskType) => task.status === 'In Progress')
+          .length,
+        totalUnstarted: state
+          .tasks
+          .filter((task: TaskType) => task.status === 'Unstarted')
+          .length,
+        totalCompleted: state
+          .tasks
+          .filter((task: TaskType) => task.status === 'Completed')
+          .length
+      }
+    }
+  )
+}
+
 const errorSelector = () => {
   return createSelector(
     (state: any) => state.error,
@@ -58,6 +81,13 @@ const Tasks = (props: TasksProps) => {
 
 export const TasksPage = () => {
   const error = useSelector(errorSelector())
+  const {
+    totalTasks,
+    totalCompleted,
+    totalUnstarted,
+    totalInProgress
+  } = useSelector(statisticsSelector())
+
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -76,6 +106,13 @@ export const TasksPage = () => {
 
   return (
     <>
+      <div className="statistics">
+        Total # of tasks: { totalTasks } |&nbsp;
+        {  Math.round(totalUnstarted/totalTasks * 100) }% Unstarted  |&nbsp;
+        { Math.round(totalInProgress/totalTasks * 100) }% In Progress  |&nbsp;
+        { Math.round(totalCompleted/totalTasks * 100) }% Completed
+
+      </div>
     { error && <FlashMessage title="Error" message={ error } /> }
     <div className="tasks">
       <div className="task-lists">

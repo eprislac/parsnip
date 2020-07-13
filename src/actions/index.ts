@@ -1,6 +1,6 @@
 import { TaskType } from '../components/Task'
-import { CALL_API } from '../middleware/api'
-
+// import { CALL_API } from '../middleware/api'
+import * as api from '../api'
 export const FETCH_TASKS_STARTED = 'FETCH_TASKS_STARTED'
 export const FETCH_TASKS_SUCCEEDED = 'FETCH_TASKS_SUCCEEDED'
 export const FETCH_TASKS_FAILED = 'FETCH_TASKS_FAILED'
@@ -37,10 +37,38 @@ export const createTask = (task: TaskType) => {
   }
 }
 
-export const editTask = (task: TaskType) => {
+export const progressTimerStart = (id: number) => {
   return {
-    type: EDIT_TASK_STARTED,
-    payload: task
+    type: 'TIMER_STARTED',
+    payload: { id: id }
+  }
+}
+
+export const progressTimerStop = (id: number) => {
+  return {
+    type: 'TIMER_STOPPED',
+    payload: { id: id }
+  }
+}
+
+export const editTask = (task: TaskType) => {
+  return (dispatch: any, getState: any) => {
+
+    api.editTask(task).then((resp: any) => {
+      dispatch(editTaskSucceeded(resp.data))
+      if(resp.data.status === 'In Progress') {
+        return dispatch(progressTimerStart(resp.data.id))
+      } else if (resp.data.status !== 'In Progress') {
+        return dispatch(progressTimerStop(resp.data.id))
+      }
+    })
+  }
+}
+
+export const editTaskSucceeded = ({ id, status }: any) => {
+  return {
+    type: 'EDIT_TASK_SUCCEEDED',
+    payload: { id, status }
   }
 }
 
@@ -87,3 +115,5 @@ export const setWarning = (warning: string) =>  {
 }
 
 export const getWarning = () => ({ type: 'GET_WARNING' })
+
+

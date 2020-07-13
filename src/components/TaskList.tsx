@@ -27,7 +27,8 @@ export const TaskList = (props: TaskListPropsType) => {
       createTask({
         title: title,
         description: description,
-        status: props.status
+        status: props.status,
+        timer: 0
       }))
     setTitle('')
     setDescription('')

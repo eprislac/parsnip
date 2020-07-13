@@ -35,7 +35,9 @@ const tasks = (state = initialTasks, action: any) => {
     case 'EDIT_TASK_SUCCEEDED':
       const updatedTask = action.payload
       const updatedTasks =  state.tasks.map((task: TaskType) => {
-        return task.id === updatedTask.id ? updatedTask : task
+        return task.id === updatedTask.id
+          ? { ...task, ...updatedTask } :
+          task
       })
       return {...state, tasks: updatedTasks }
     case 'CREATE_TASK_SUCCEEDED':
@@ -50,6 +52,17 @@ const tasks = (state = initialTasks, action: any) => {
       return {
         ...state,
         tasks: lessTasks
+      }
+    case 'TIMER_INCREMENT':
+      const nextTasks = state.tasks.map((task: TaskType) => {
+        if (task.id === action.payload) {
+          return { ...task, timer: task.timer + 1 }
+        }
+        return task
+      })
+      return {
+        ...state,
+        tasks: nextTasks
       }
     default:
       return state
